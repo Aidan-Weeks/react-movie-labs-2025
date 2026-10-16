@@ -24,6 +24,7 @@ export default function MovieCard(props) {
     e.preventDefault();
     props.selectFavorite(movie.id);
   };
+  
 
   return (
     <Card>

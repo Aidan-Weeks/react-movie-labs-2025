@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import PageTemplate from '../components/templateMovieListPage'
 import { getMovies } from "../api/tmdb-api";
-
 
 
 const HomePage = (props) => {
@@ -16,12 +15,11 @@ const HomePage = (props) => {
     setMovies(updatedMovies);
   };
 
-   useEffect(() => {
+  useEffect(() => {
     getMovies().then(movies => {
       setMovies(movies);
     });
   }, []);
-
 
   return (
     <PageTemplate

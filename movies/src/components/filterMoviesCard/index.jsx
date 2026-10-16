@@ -24,12 +24,13 @@ export default function FilterMoviesCard(props) {
 
   const [genres, setGenres] = useState([{ id: '0', name: "All" }])
   
-  useEffect(() => {
+    useEffect(() => {
     getGenres().then((allGenres) => {
       setGenres([genres[0], ...allGenres]);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
 
 
     const handleChange = (e, type, value) => {
