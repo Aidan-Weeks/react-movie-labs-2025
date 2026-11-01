@@ -6,3 +6,5 @@ export function excerpt(string) {
     separator: /,?\.* +/, // separate by spaces, including preceding commas and periods
   });
 }
+
+export const tvToCardShape = (s) => ({ ...s, title: s.name, release_date: s.first_air_date });

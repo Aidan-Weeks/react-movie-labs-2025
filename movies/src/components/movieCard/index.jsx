@@ -18,7 +18,7 @@ import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 
 
 
-export default function MovieCard({ movie, action }) {
+export default function MovieCard({ movie, action, linkBase = "/movies"  }) {
     const { favorites, addToFavorites } = useContext(MoviesContext);
 
   if (favorites.find((id) => id === movie.id)) {
@@ -78,7 +78,7 @@ export default function MovieCard({ movie, action }) {
       
         {action(movie)}
       
-        <Link to={`/movies/${movie.id}`}>
+        <Link to={`${linkBase}/${movie.id}`}>
           <Button variant="outlined" size="medium" color="primary">
             More Info ...
           </Button>

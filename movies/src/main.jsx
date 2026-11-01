@@ -1,6 +1,7 @@
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Route, Navigate, Routes } from "react-router";
 import HomePage from "./pages/homePage";
+import TvSeriesPage from "./pages/tvSeriesPage"
 import MoviePage from "./pages/movieDetailsPage";
 import UpcomingPage from "./pages/upcomingPage";
 import FavoriteMoviesPage from "./pages/favoriteMoviesPage";
@@ -37,6 +38,7 @@ const App = () => {
             <Route path="/reviews/:id" element={<MovieReviewPage />} />
             <Route path="/movies/:id" element={<MoviePage />} />
             <Route path="/" element={<HomePage />} />
+            <Route path="/tv" element={<TvSeriesPage />} />
             <Route path="*" element={<Navigate to="/" />} />
             <Route path="/reviews/form" element={ <AddMovieReviewPage /> } />
 
