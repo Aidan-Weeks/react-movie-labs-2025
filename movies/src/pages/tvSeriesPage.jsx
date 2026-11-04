@@ -2,7 +2,6 @@ import { getSeries, getTvGenres } from "../api/tmdb-api";
 import PageTemplate from '../components/templateMovieListPage';
 import { useQuery } from '@tanstack/react-query';
 import Spinner from '../components/spinner';
-import { tvToCardShape } from "../util";
 
 
 const TvSeriesPage = (props) => {
@@ -20,13 +19,12 @@ const TvSeriesPage = (props) => {
     return <h1>{error.message}</h1>
   }  
   
-  const series = data.results.map(tvToCardShape);
+  const series = data;
 
      return (
       <PageTemplate
         title="Discover TV Series"
-        movies={series}
-        linkBase="/tv"   
+        movies={series}  
         genresKey="tv-genres"
       genresFn={getTvGenres}   
          action={() => null}  
