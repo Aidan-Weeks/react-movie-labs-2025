@@ -19,7 +19,7 @@ import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 
 
 export default function TvCard({ tv, action}) {
-    const { favorites, addToFavorites } = useContext(TvContext);
+   /* const { favorites, addToFavorites } = useContext(TvContext);
 
   if (favorites.find((id) => id === tv.id)) {
     tv.favorite = true;
@@ -32,7 +32,7 @@ export default function TvCard({ tv, action}) {
     addToFavorites(tv);
   };
 
-  
+  */
 
   return (
     <Card>
@@ -46,7 +46,7 @@ export default function TvCard({ tv, action}) {
         }
         title={
           <Typography variant="h5" component="p">
-            {tv.title}{" "}
+            {tv.name}{" "}
           </Typography>
         }
       />
@@ -63,7 +63,7 @@ export default function TvCard({ tv, action}) {
           <Grid size={{xs: 6}}>
             <Typography variant="h6" component="p">
               <CalendarIcon fontSize="small" />
-              {tv.release_date}
+              {tv.first_air_date}
             </Typography>
           </Grid>
           <Grid size={{xs: 6}}>
