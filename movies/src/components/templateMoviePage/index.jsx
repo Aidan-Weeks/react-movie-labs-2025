@@ -6,13 +6,14 @@ import ImageListItem from "@mui/material/ImageListItem";
 import { getMovieImages } from "../../api/tmdb-api";
 import { useQuery } from "@tanstack/react-query";
 import Spinner from '../spinner'
+import { getTvImages } from "../../api/tmdb-api";
 
 
-const TemplateMoviePage = ({ movie, children }) => {
-    const { data, error, isPending, isError } = useQuery({
-    queryKey: ['images', { id: movie.id }],
-    queryFn: getMovieImages,
-  });
+const TemplateMoviePage = ({ movie, children, type = "movie" }) => {
+     const { data, error, isPending, isError } = useQuery({
+       queryKey: [type === "tv" ? 'tv-images' : 'images', { id: movie.id }],
+       queryFn: type === "tv" ? getTvImages : getMovieImages,
+     });
 
   if (isPending) {
     return <Spinner />;

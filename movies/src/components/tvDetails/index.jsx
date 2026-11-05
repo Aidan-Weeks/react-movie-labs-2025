@@ -23,7 +23,7 @@ const root = {
 };
 const chip = { margin: 0.5 };
 
-const TvDetails = ({ tv }) => {  // Don't miss this!
+const TvDetails = ({ movie }) => {  // Don't miss this!
 const [drawerOpen, setDrawerOpen] = useState(false);
 
 
@@ -34,7 +34,7 @@ const [drawerOpen, setDrawerOpen] = useState(false);
       </Typography>
 
       <Typography variant="h6" component="p">
-        {tv.overview}
+        {movie.overview}
       </Typography>
 
       <Paper 
@@ -44,23 +44,18 @@ const [drawerOpen, setDrawerOpen] = useState(false);
         <li>
           <Chip label="Genres" sx={{...chip}} color="primary" />
         </li>
-        {tv.genres.map((g) => (
+        {movie.genres.map((g) => (
           <li key={g.name}>
             <Chip label={g.name} sx={{...chip}} />
           </li>
         ))}
       </Paper>
       <Paper component="ul" sx={{...root}}>
-        <Chip icon={<AccessTimeIcon />} label={`${tv.runtime} min.`} />
-        <Chip
-          icon={<MonetizationIcon />}
-          label={`${tv.revenue.toLocaleString()}`}
-        />
         <Chip
           icon={<StarRate />}
-          label={`${tv.vote_average} (${tv.vote_count})`}
+          label={`${movie.vote_average} (${movie.vote_count})`}
         />
-        <Chip label={`Released: ${tv.release_date}`} />
+        <Chip label={`First aired: ${movie.first_air_date}`} />
 
       </Paper>
       <Paper 
@@ -70,29 +65,12 @@ const [drawerOpen, setDrawerOpen] = useState(false);
         <li>
           <Chip label="Production Countries" sx={{...chip}} color="primary" />
         </li>
-        {tv.production_countries.map((c) => (
+        {movie.production_countries.map((c) => (
           <li key={c.name}>
             <Chip label={c.name} sx={{...chip}} />
           </li>
         ))}
       </Paper>
-            <Fab
-        color="secondary"
-        variant="extended"
-        onClick={() =>setDrawerOpen(true)}
-        sx={{
-          position: 'fixed',
-          bottom: '1em',
-          right: '1em'
-        }}
-      >
-        <NavigationIcon />
-        Reviews
-      </Fab>
-      <Drawer anchor="top" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
-        <TvReviews tv={tv} />
-      </Drawer>
-
       </>
   );
 };
