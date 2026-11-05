@@ -55,6 +55,10 @@ export default function FilterMoviesCard(props) {
     handleChange(e, "genre", e.target.value);
   };
 
+  const handleSortChange = (e) => {
+  handleChange(e, "sort", e.target.value);
+};
+
 
   return (
     <Card 
@@ -67,6 +71,7 @@ export default function FilterMoviesCard(props) {
           <SearchIcon fontSize="large" />
           Filter the movies.
         </Typography>
+        <br />
             <TextField
       sx={{...formControl}}
       id="filled-search"
@@ -96,17 +101,24 @@ export default function FilterMoviesCard(props) {
             })}
           </Select>
         </FormControl>
+        <FormControl sx={{...formControl}}>
+  <InputLabel id="sort-label">Sort by rating</InputLabel>
+  <Select
+    labelId="sort-label"
+    label="Sort by rating... "
+    id="sort-select"
+    value={props.sortFilter || "none"}
+    onChange={handleSortChange}
+  >
+    <MenuItem value="none">Sort by rating...</MenuItem>
+    <MenuItem value="rating-desc">Highest rated</MenuItem>
+    <MenuItem value="rating-asc">Lowest rated</MenuItem>
+  </Select>
+</FormControl>
       </CardContent>
-      <CardMedia
-        sx={{ height: 300 }}
-        image={img}
-        title="Filter"
-      />
+    
       <CardContent>
         <Typography variant="h5" component="h1">
-          <SearchIcon fontSize="large" />
-          Filter the movies.
-          <br />
         </Typography>
       </CardContent>
     </Card>

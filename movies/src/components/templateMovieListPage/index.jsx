@@ -8,6 +8,8 @@ import Grid from "@mui/material/Grid";
 function MovieListPageTemplate({ movies, title, action }) {
   const [nameFilter, setNameFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
+  const [sortFilter, setSortFilter] = useState("none");
+
   const genreId = Number(genreFilter);
 
   let displayedMovies = movies
@@ -17,10 +19,16 @@ function MovieListPageTemplate({ movies, title, action }) {
     .filter((m) => {
       return genreId > 0 ? m.genre_ids.includes(genreId) : true;
     });
+    if (sortFilter === "rating-desc") {
+      displayedMovies = [...displayedMovies].sort((a, b) => b.vote_average - a.vote_average);
+  } else if (sortFilter === "rating-asc") {
+     displayedMovies = [...displayedMovies].sort((a, b) => a.vote_average - b.vote_average);
+  }
 
   const handleChange = (type, value) => {
     if (type === "name") setNameFilter(value);
-    else setGenreFilter(value);
+    else if (type === "genre") setGenreFilter(value);
+      else if (type === "sort") setSortFilter(value);
   };
 
   return (
