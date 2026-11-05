@@ -9,7 +9,8 @@ import Fab from "@mui/material/Fab";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import Drawer from "@mui/material/Drawer";
-import movieReviews from "../movieReviews"
+import movieReviews from "../movieReviews";
+import Trailer from "../trailer";
 
 
 
@@ -71,6 +72,7 @@ const [drawerOpen, setDrawerOpen] = useState(false);
           </li>
         ))}
       </Paper>
+      <Trailer id={movie.id} type="tv" />
       </>
   );
 };

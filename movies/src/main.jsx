@@ -12,6 +12,7 @@ import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import MoviesContextProvider from "./contexts/moviesContext";
 import AddMovieReviewPage from './pages/addMovieReviewPage'
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 
 
@@ -25,10 +26,16 @@ const queryClient = new QueryClient({
   },
 });
 
-
+const theme = createTheme({
+  palette: {
+    primary: { main: "#9c27b0" },  
+    secondary: { main: "#f5b301" },
+  },
+});
 
 const App = () => {
   return (
+    <ThemeProvider theme={theme}>
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <SiteHeader />
@@ -49,6 +56,7 @@ const App = () => {
       </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
+    </ThemeProvider>
   );
 };
 
