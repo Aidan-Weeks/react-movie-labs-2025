@@ -1,16 +1,11 @@
 import React from "react";
 import Chip from "@mui/material/Chip";
 import Paper from "@mui/material/Paper";
-import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import MonetizationIcon from "@mui/icons-material/MonetizationOn";
-import StarRate from "@mui/icons-material/StarRate";
-import NavigationIcon from "@mui/icons-material/Navigation";
-import Fab from "@mui/material/Fab";
+import WorkIcon from "@mui/icons-material/Work";
+import CakeIcon from "@mui/icons-material/Cake";
+import PlaceIcon from "@mui/icons-material/Place";
+import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import Typography from "@mui/material/Typography";
-import { useState } from "react";
-import Drawer from "@mui/material/Drawer";
-import MovieReviews from "../movieReviews"
-import Trailer from "../trailer";
 
 
 
@@ -24,18 +19,17 @@ const root = {
 };
 const chip = { margin: 0.5 };
 
-const MovieDetails = ({ movie }) => {  // Don't miss this!
-const [drawerOpen, setDrawerOpen] = useState(false);
+const ActorDetails = ({ actor }) => {
 
 
   return (
     <>
       <Typography variant="h5" component="h3">
-        Overview
+        Biography
       </Typography>
 
       <Typography variant="h6" component="p">
-        {movie.overview}
+        {actor.biography || "No biography available."}
       </Typography>
 
       <Paper 
@@ -43,59 +37,26 @@ const [drawerOpen, setDrawerOpen] = useState(false);
         sx={{...root}}
       >
         <li>
-          <Chip label="Genres" sx={{...chip}} color="primary" />
+          <Chip label="Also Known As" sx={{...chip}} color="primary" />
         </li>
-        {movie.genres.map((g) => (
-          <li key={g.name}>
-            <Chip label={g.name} sx={{...chip}} />
+        {actor.also_known_as.map((name) => (
+          <li key={name}>
+            <Chip label={name} sx={{...chip}} />
           </li>
         ))}
       </Paper>
       <Paper component="ul" sx={{...root}}>
-        <Chip icon={<AccessTimeIcon />} label={`${movie.runtime} min.`} />
+        <Chip icon={<WorkIcon />} label={actor.known_for_department} />
         <Chip
-          icon={<MonetizationIcon />}
-          label={`${movie.revenue.toLocaleString()}`}
+          icon={<TrendingUpIcon />}
+          label={`${actor.popularity}`}
         />
-        <Chip
-          icon={<StarRate />}
-          label={`${movie.vote_average} (${movie.vote_count})`}
-        />
-        <Chip label={`Released: ${movie.release_date}`} />
+        <Chip icon={<CakeIcon />} label={`Born: ${actor.birthday}`} />
+        <Chip icon={<PlaceIcon />} label={`${actor.place_of_birth}`} />
 
       </Paper>
-      <Paper 
-        component="ul" 
-        sx={{...root}}
-      >
-        <li>
-          <Chip label="Production Countries" sx={{...chip}} color="primary" />
-        </li>
-        {movie.production_countries.map((c) => (
-          <li key={c.name}>
-            <Chip label={c.name} sx={{...chip}} />
-          </li>
-        ))}
-      </Paper>
-            <Fab
-        color="secondary"
-        variant="extended"
-        onClick={() =>setDrawerOpen(true)}
-        sx={{
-          position: 'fixed',
-          bottom: '1em',
-          right: '1em'
-        }}
-      >
-        <NavigationIcon />
-        Reviews
-      </Fab>
-      <Drawer anchor="top" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
-        <MovieReviews movie={movie} />
-      </Drawer>
-      <Trailer id={movie.id} type="movie" />
 
       </>
   );
 };
-export default MovieDetails ;
+export default ActorDetails ;

@@ -13,7 +13,8 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import MoviesContextProvider from "./contexts/moviesContext";
 import AddMovieReviewPage from './pages/addMovieReviewPage'
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-
+import ActorsPage from "./pages/actorsPage";
+import ActorsDetailPage from "./pages/actorsDetailPage";
 
 
 const queryClient = new QueryClient({
@@ -50,6 +51,10 @@ const App = () => {
             <Route path="/tv" element={<TvSeriesPage />} />
             <Route path="*" element={<Navigate to="/" />} />
             <Route path="/reviews/form" element={ <AddMovieReviewPage /> } />
+            <Route path="/actors" element={ <ActorsPage /> } />
+            <Route path="/actors/:id" element={ <ActorsDetailPage /> } />
+
+
 
           </Routes>
         </MoviesContextProvider>

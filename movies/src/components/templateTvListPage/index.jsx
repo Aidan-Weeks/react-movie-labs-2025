@@ -36,6 +36,7 @@ function TvListPageTemplate({ tv, title, action, genresKey, genresFn }) {
           sx={{padding: "20px"}}
         >
           <FilterCard
+          
             onUserInput={handleChange}
             titleFilter={nameFilter}
             genreFilter={genreFilter}
