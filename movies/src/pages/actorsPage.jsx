@@ -1,14 +1,17 @@
+import { useState } from "react";
 import { getActors } from "../api/tmdb-api";
 import PageTemplate from '../components/templateActorListPage';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, keepPreviousData } from '@tanstack/react-query';
 import Spinner from '../components/spinner';
 
 
 const ActorsPage = (props) => {
+const [page, setPage] = useState(1);
 
   const { data, error, isPending, isError  } = useQuery({
-    queryKey: ['actors'],
+    queryKey: ['actors', { page: page }],
     queryFn: getActors,
+    placeholderData: keepPreviousData,
   })
 
   if (isPending) {
@@ -26,6 +29,9 @@ const ActorsPage = (props) => {
         title="Popular Actors"
         actors={actors}
         action={(actor) => null}
+        page={page}
+        totalPages={Math.min(data.total_pages, 500)}
+        onPageChange={setPage}
       />
   );
 

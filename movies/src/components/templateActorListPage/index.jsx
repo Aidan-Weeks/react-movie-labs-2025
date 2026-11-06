@@ -7,8 +7,9 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import SearchIcon from "@mui/icons-material/Search";
+import PaginationBar from "../paginationBar";
 
-function ActorListPageTemplate({ actors, title, action }) {
+function ActorListPageTemplate({ actors, title, action, page, totalPages, onPageChange }) {
   const [nameFilter, setNameFilter] = useState("");
 
   let displayedActors = actors
@@ -46,7 +47,10 @@ function ActorListPageTemplate({ actors, title, action }) {
           </Card>
         
         </Grid>
-        <ActorList action={action} actors={displayedActors}></ActorList>
+         <ActorList action={action} actors={displayedActors}></ActorList>
+      </Grid>
+      <Grid size={12}>
+        <PaginationBar page={page} totalPages={totalPages} onPageChange={onPageChange} />
       </Grid>
     </Grid>
   );
