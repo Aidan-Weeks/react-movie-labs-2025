@@ -6,7 +6,9 @@ import CakeIcon from "@mui/icons-material/Cake";
 import PlaceIcon from "@mui/icons-material/Place";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import Typography from "@mui/material/Typography";
-
+import { Link } from "react-router";
+import { useQuery } from "@tanstack/react-query";
+import { getActorCredits } from "../../api/tmdb-api";
 
 
 const root = {
@@ -20,6 +22,15 @@ const root = {
 const chip = { margin: 0.5 };
 
 const ActorDetails = ({ actor }) => {
+
+const { data: credits } = useQuery({
+    queryKey: ['actor-credits', { id: actor.id }],
+    queryFn: getActorCredits,
+  });
+
+  const roles = (credits?.cast || [])
+    .sort((a, b) => b.vote_count - a.vote_count)
+    .slice(0, 10);
 
 console.log(actor.also_known_as);
   return (
@@ -57,7 +68,25 @@ console.log(actor.also_known_as);
         <Chip icon={<PlaceIcon />} label={`${actor.place_of_birth}`} />
 
       </Paper>
-
+      <Paper 
+        component="ul" 
+        sx={{...root}}
+      >
+        <li>
+          <Chip label="Known For" sx={{...chip}} color="primary" />
+        </li>
+        {roles.map((movieLink) => (
+          <li key={movieLink.credit_id}>
+            <Chip
+              label={movieLink.title || movieLink.name}
+              sx={{...chip}}
+              clickable
+              component={Link}
+              to={movieLink.media_type === "tv" ? `/tv/${movieLink.id}` : `/movies/${movieLink.id}`}
+            />
+          </li>
+        ))}
+      </Paper>
       </>
   );
 };

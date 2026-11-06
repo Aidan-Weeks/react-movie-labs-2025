@@ -5,7 +5,8 @@ import { getActor } from '../api/tmdb-api'
 import { useQuery } from '@tanstack/react-query';
 import Spinner from '../components/spinner'
 
-const ActorsDetailsPage = (props) => {
+
+const ActorsDetailPage = (props) => {
   const { id } = useParams();
   const { data: actor, error, isPending, isError } = useQuery({
     queryKey: ['actor', { id: id }],
@@ -35,4 +36,4 @@ const ActorsDetailsPage = (props) => {
   );
 };
 
-export default ActorsDetailsPage;
+export default ActorsDetailPage;
