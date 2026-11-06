@@ -102,9 +102,10 @@ export const getUpcomingMovies = () => {
 };
 
 
-export const getSeries = () => {
+export const getSeries = ({ queryKey }) => {
+  const [, { page }] = queryKey;
   return fetch(
-    `https://api.themoviedb.org/3/discover/tv?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&include_adult=false&page=1`
+    `https://api.themoviedb.org/3/discover/tv?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&include_adult=false&page=${page}`
   ).then((response) => {
     if (!response.ok) {
       return response.json().then((error) => {

@@ -5,8 +5,9 @@ import Header from "../headerMovieList";
 import FilterCard from "../filterMoviesCard";
 import TvList from "../tvList";
 import Grid from "@mui/material/Grid";
+import PaginationBar from "../paginationBar";
 
-function TvListPageTemplate({ tv, title, action, genresKey, genresFn }) {
+function TvListPageTemplate({ tv, title, action, genresKey, genresFn, page, totalPages, onPageChange }) {
   const [nameFilter, setNameFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
   const genreId = Number(genreFilter);
@@ -45,6 +46,9 @@ function TvListPageTemplate({ tv, title, action, genresKey, genresFn }) {
           />
         </Grid>
         <TvList action={action} tv={displayedTv}></TvList>
+      </Grid>
+      <Grid size={12}>
+        <PaginationBar page={page} totalPages={totalPages} onPageChange={onPageChange} />
       </Grid>
     </Grid>
   );
