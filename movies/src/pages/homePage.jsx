@@ -3,6 +3,8 @@ import PageTemplate from '../components/templateMovieListPage';
 import { useQuery, keepPreviousData } from '@tanstack/react-query';
 import Spinner from '../components/spinner';
 import AddToFavoritesIcon from '../components/cardIcons/addToFavorites'
+import AddToPlaylistIcon from '../components/cardIcons/addToPlaylist'
+
 import { useState } from "react";
 
 
@@ -31,17 +33,22 @@ const HomePage = (props) => {
   localStorage.setItem('favorites', JSON.stringify(favorites))
   const addToFavorites = (movieId) => true 
 
- return (
-      <PageTemplate
-        title="Discover Movies"
-        movies={movies}
-        action={(movie) => {
-          return <AddToFavoritesIcon movie={movie} />
-        }}
-        page={page}
-        totalPages={Math.min(data.total_pages, 500)}
-        onPageChange={setPage}
-      />
+   return (
+    <PageTemplate
+      title="Discover Movies"
+      movies={movies}
+      action={(movie) => {
+        return (
+          <>
+            <AddToFavoritesIcon movie={movie} />
+            <AddToPlaylistIcon movie={movie} />
+          </>
+        );
+      }}
+      page={page}
+      totalPages={Math.min(data.total_pages, 500)}
+      onPageChange={setPage}
+    />
   );
 };
 

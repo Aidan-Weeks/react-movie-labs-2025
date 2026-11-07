@@ -11,7 +11,7 @@ import { useState } from "react";
 import Drawer from "@mui/material/Drawer";
 import MovieReviews from "../movieReviews"
 import Trailer from "../trailer";
-
+import CastList from "../castList";
 
 
 const root = {
@@ -88,11 +88,12 @@ const [drawerOpen, setDrawerOpen] = useState(false);
         }}
       >
         <NavigationIcon />
-        Reviewsa
+        Reviews
       </Fab>
       <Drawer anchor="top" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
         <MovieReviews movie={movie} />
       </Drawer>
+      <CastList id={movie.id} type="movie" />
       <Trailer id={movie.id} type="movie" />
 
       </>

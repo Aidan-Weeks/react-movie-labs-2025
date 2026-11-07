@@ -32,7 +32,6 @@ const { data: credits } = useQuery({
     .sort((a, b) => b.vote_count - a.vote_count)
     .slice(0, 10);
 
-console.log(actor.also_known_as);
   return (
     <>
       <Typography variant="h5" component="h3">
@@ -41,7 +40,7 @@ console.log(actor.also_known_as);
 
       <Typography variant="h6" component="p">
         {actor.biography || "No biography available."}
-      </Typography>
+      </Typography> 
 
       <Paper 
         component="ul" 

@@ -9,12 +9,12 @@ import FavoriteMoviesPage from "./pages/favoriteMoviesPage";
 import MovieReviewPage from "./pages/movieReviewPage";
 import SiteHeader from './components/siteHeader'
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import MoviesContextProvider from "./contexts/moviesContext";
 import AddMovieReviewPage from './pages/addMovieReviewPage'
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import ActorsPage from "./pages/actorsPage";
 import ActorsDetailPage from "./pages/actorsDetailPage";
+import WatchlistPage from "./pages/watchlistPage";
 
 
 const queryClient = new QueryClient({
@@ -53,13 +53,13 @@ const App = () => {
             <Route path="/reviews/form" element={ <AddMovieReviewPage /> } />
             <Route path="/actors" element={ <ActorsPage /> } />
             <Route path="/actors/:id" element={ <ActorsDetailPage /> } />
+            <Route path="/movies/watchlist" element={<WatchlistPage />} />
 
 
 
           </Routes>
         </MoviesContextProvider>
       </BrowserRouter>
-      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
     </ThemeProvider>
   );
